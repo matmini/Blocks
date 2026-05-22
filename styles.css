@@ -1,0 +1,51 @@
+:root {
+  /* GitHub's signature color scheme */
+  --bg-level-0: #ebedf0; /* Empty / light grey */
+  --bg-level-1: #9be9a8; /* Light green */
+  --bg-level-2: #40c463; /* Medium green */
+  --bg-level-3: #30a14e; /* Dark green */
+  --bg-level-4: #216e39; /* Deepest green */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+.graph-container {
+  overflow-x: auto; /* Allows scrolling on smaller screens */
+  padding: 20px;
+}
+
+.contribution-table {
+  border-collapse: separate; /* Required for border-spacing to work */
+  border-spacing: 3px;       /* The gap between the boxes */
+}
+
+/* Base style for every contribution box */
+.contribution-table td:not(.day-label) {
+  width: 12px;
+  height: 10px;  
+  border-radius: 2px;       /* Slightly rounded corners */
+}
+
+/* Day labels styling (Sun, Mon, Wed, etc.) */
+.day-label {
+  font-size: 9px;
+  color: #767676;
+  text-align: left;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+/* Hide alternating day labels for a cleaner look, just like GitHub */
+.contribution-table tr:nth-child(even) .day-label {
+  visibility: hidden;
+}
+
+/* Color levels based on contribution intensity */
+.level-0 { background-color: var(--bg-level-0); }
+.level-1 { background-color: var(--bg-level-1); }
+.level-2 { background-color: var(--bg-level-2); }
+.level-3 { background-color: var(--bg-level-3); }
+.level-4 { background-color: var(--bg-level-4); }
