@@ -19,19 +19,20 @@ body {
 
 .contribution-table {
   border-collapse: separate; /* Required for border-spacing to work */
-  border-spacing: 3px;       /* The gap between the boxes */
+  border-spacing: 5px;       /* The gap between the boxes */
 }
 
 /* Base style for every contribution box */
 .contribution-table td:not(.day-label) {
-  width: 12px;
-  height: 10px;  
-  border-radius: 2px;       /* Slightly rounded corners */
+  width: 28px;
+  height: 26px;  
+  border-radius: 4px;       /* Slightly rounded corners */
+  background-color: var(--bg-level-0);
 }
 
 /* Day labels styling (Sun, Mon, Wed, etc.) */
 .day-label {
-  font-size: 9px;
+  font-size: 15px;
   color: #767676;
   text-align: left;
   padding-right: 8px;
@@ -44,8 +45,6 @@ body {
 }
 
 /* Color levels based on contribution intensity */
-.level-0 { background-color: var(--bg-level-0); }
-.level-1 { background-color: var(--bg-level-1); }
-.level-2 { background-color: var(--bg-level-2); }
-.level-3 { background-color: var(--bg-level-3); }
-.level-4 { background-color: var(--bg-level-4); }
+.contribution-table td.filled {
+  background-color: var(--bg-level-2);
+}
