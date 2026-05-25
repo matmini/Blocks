@@ -42,7 +42,7 @@ body {
 }
 
 /* Hide alternating day labels for a cleaner look, just like GitHub */
-.contribution-table tr:nth-child(even) .day-label {
+.contribution-table tr:nth-child(odd) .day-label {
   visibility: hidden;
 }
 
@@ -60,4 +60,12 @@ body {
   to {
     transform: scaleX(1);
   }
+}
+
+.month-label {
+  text-align: left;
+  font-size: 15px;
+  color: #767676;
+  font-weight: normal; 
+  padding-bottom: 5px;
 }
