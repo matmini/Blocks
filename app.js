@@ -2,6 +2,15 @@ const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul"]; 
 const weeks = 52/2;
 
+const habitTxt = document.getElementById("habit-name-txt");
+habitTxt.addEventListener("keydown", (e)=>{
+  // Check if the pressed key is Enter 
+  if (e.key === "Enter") {
+    e.preventDefault(); // Prevent the default action (creating a new line)
+    habitTxt.blur();
+  }
+});
+
 const table = document.querySelector("#habit-body")
 
 table.addEventListener("click", (e)=>{

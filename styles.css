@@ -1,3 +1,4 @@
+
 :root {
   /* GitHub's signature color scheme */
   --bg-level-0: #ebedf0; /* Empty / light grey */
@@ -8,8 +9,13 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
   background-color: #ffffff;
+  /* Adds a 20px gap on the top, bottom, left, and right of the screen */
+  padding: clamp(16px, 3vw, 40px); 
+  /* Ensures padding doesn't accidentally cause horizontal scrolling */
+  box-sizing: border-box; 
+  margin: 0;
 }
 
 .graph-container {
@@ -20,16 +26,24 @@ body {
 .contribution-table {
   border-collapse: separate; /* Required for border-spacing to work */
   border-spacing: 5px;       /* The gap between the boxes */
+  width: max-content;        /* Shrinks tha table wrapper to fit only the cells */
 }
 
 /* Base style for every contribution box */
 .contribution-table td:not(.day-label) {
   width: 28px;
-  height: 26px;  
+  height: 28px;  
+  min-width: 28px;
+  min-height: 28px; 
+  max-width: 28px;
+  max-height: 28px;
+
   border-radius: 4px;       /* Slightly rounded corners */  
   position: relative;
   overflow: hidden;
   background-color: var(--bg-level-0);
+
+
 }
 
 /* Day labels styling (Sun, Mon, Wed, etc.) */
@@ -69,3 +83,19 @@ body {
   font-weight: normal; 
   padding-bottom: 5px;
 }
+
+h1 {
+  font-size: 3rem;
+}
+
+h1[contenteditable="true"]{
+  padding: 2px 5px; 
+  display: inline-block; /*this shirks the hitbox to the text width only*/
+}
+h1[contenteditable="true"]:hover {
+  cursor: text;
+}
+h1[contenteditable="true"]:focus{
+  outline: none;
+}
+/* Show a bu
