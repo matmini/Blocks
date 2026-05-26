@@ -1,3 +1,4 @@
+import { initializeTooltip } from './components/tooltip.js';
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul"]; 
 const weeks = 52/2;
@@ -84,12 +85,13 @@ for (let i = 0; i < 365/2; i++) {
   const td = document.createElement("td");
   // adds date dataset to the td in format: 
   // 2026-01-01
-  td.dataset.date = 
-    `${date.getFullYear()}-${
+  let dateStr = `${date.getFullYear()}-${
       String(date.getMonth() + 1).padStart(2, "0")
     }-${
       String(date.getDate()).padStart(2, "0")
-    }`;
+    }`
+  td.dataset.date = dateStr;
+  td.setAttribute("data-tooltip", dateStr)
   rows[dayName].appendChild(td);
 
   /**
@@ -117,3 +119,6 @@ for (let i = 0; i < 365/2; i++) {
 }
 
 
+const tooltip = document.getElementById('global-tooltip');
+// tooltip logic
+initializeTooltip(table, tooltip);

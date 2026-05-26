@@ -98,4 +98,24 @@ h1[contenteditable="true"]:hover {
 h1[contenteditable="true"]:focus{
   outline: none;
 }
-/* Show a bu
+
+.github-tooltip {
+  position: fixed; /* Absolute positioning relative to the visible viewport screen */
+  pointer-events: none; /* Crucial: stops the tooltip box from blocking the mouse pointer */
+  transform: translateX(-50%); /* Centers the box nicely right over the cursor pointer */
+  
+  /* GitHub Dark Aesthetic */
+  background-color: white;
+  color:black;
+  /*font-size: 11px;*/
+  white-space: nowrap;
+  padding: 5px 8px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  /* Hidden by default, controlled via JS opacity updates */
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  z-index: 99999;
+
+}
