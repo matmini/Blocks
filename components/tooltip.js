@@ -29,7 +29,7 @@ export function initializeTooltip(tableElement, tooltipElement) {
             tooltipElement.style.opacity = '1'; 
           });
         });
-      }); 
+      }, 70); 
     }
   });
 

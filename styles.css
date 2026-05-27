@@ -105,8 +105,8 @@ h1[contenteditable="true"]:focus{
   transform: translateX(-50%); /* Centers the box nicely right over the cursor pointer */
   
   /* GitHub Dark Aesthetic */
-  background-color: white;
-  color:black;
+  background-color: #1F2328;
+  color:white;
   /*font-size: 11px;*/
   white-space: nowrap;
   padding: 5px 8px;
