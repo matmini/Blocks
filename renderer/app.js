@@ -1,4 +1,4 @@
-import { initializeTooltip } from '../components/tooltip.js';
+import { initializeTooltip } from './components/tooltip.js';
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul"]; 
 const weeks = 52/2;
