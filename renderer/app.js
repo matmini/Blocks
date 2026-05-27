@@ -1,4 +1,4 @@
-import { initializeTooltip } from './components/tooltip.js';
+import { initializeTooltip } from '../components/tooltip.js';
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul"]; 
 const weeks = 52/2;
@@ -38,6 +38,7 @@ habitTxt.addEventListener("keydown", (e)=>{
 });
 
 const table = document.querySelector("#habit-body")
+//-----------------------------------------
 
 // a cell in table is clicked 
 table.addEventListener("click", async (e)=>{
@@ -63,6 +64,10 @@ table.addEventListener("click", async (e)=>{
 
   //console.log("Clicked: ", cell.dataset.date);
 });
+//--------------------------------------------
+/**
+ * ADDING ROWS TO THE TABLE OBJECT
+ */
 
 /**
  * Create the months headerROW 
@@ -157,7 +162,7 @@ for (let i = 0; i < 365/2; i++) {
     }
   }
 }
-
+//-------------------------------------------------------------
 
 const tooltip = document.getElementById('global-tooltip');
 // tooltip logic

@@ -19,7 +19,7 @@ function createWindow(){
 
   // Load your existing HTML file 
   //win.maximize();
-  win.loadFile('index.html');
+  win.loadFile('renderer/index.html');
 }
 
 /*
@@ -39,6 +39,6 @@ app.whenReady().then(() => {
   // Initialize your habit IPC logic here 
   initHabitManager();
 
-  
+
   createWindow();
 })
