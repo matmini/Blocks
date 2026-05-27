@@ -3,6 +3,31 @@ const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul"]; 
 const weeks = 52/2;
 
+//-----------
+
+//-----------
+
+const testBtn = document.getElementById('test-btn'); 
+const testStatus = document.getElementById('test-status'); 
+
+if (testBtn && testStatus) {
+  testBtn.addEventListener('click', async () => {
+    testStatus.textContent = "Sending ping..."; 
+
+    try {
+      // call the function across the bridge 
+      const response = await window.api.pingBackend(); 
+
+      // Display the response from main.js in the UI
+      testStatus.textContent = response;
+    } catch (error) {
+      testStatus.textContent = `Error: ${error.message}`; 
+      console.error(error);
+    }
+  });
+}
+
+
 const habitTxt = document.getElementById("habit-name-txt");
 habitTxt.addEventListener("keydown", (e)=>{
   // Check if the pressed key is Enter 
@@ -14,14 +39,29 @@ habitTxt.addEventListener("keydown", (e)=>{
 
 const table = document.querySelector("#habit-body")
 
-table.addEventListener("click", (e)=>{
+// a cell in table is clicked 
+table.addEventListener("click", async (e)=>{
   const cell = e.target; 
-
+  
   // Ignore day labels and other elements 
   if (!cell.matches("td[data-date]")) return; 
 
-  cell.classList.toggle("filled"); 
-  console.log("Clicked: ", cell.dataset.date);
+  const dateString = cell.dataset.date; 
+
+  // toggle filled and isChecked depends on it 
+  const isChecked = cell.classList.toggle("filled");  
+
+  try {
+    // Call the bridge function safely 
+    // the code pauses here until the main process saves to electron-store
+    await window.api.toggleHabit(dateString, isChecked);
+
+    console.log(`Saved: ${dateString} is now ${isChecked}`);
+  } catch {
+    console.error("Failed to save habit to storage: ", error);
+  }
+
+  //console.log("Clicked: ", cell.dataset.date);
 });
 
 /**
