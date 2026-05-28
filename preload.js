@@ -4,6 +4,7 @@ contextBridge.exposeInMainWorld('api', {
   pingBackend: ()=> ipcRenderer.invoke('ping'),
 
   // Add these two lines for your habit tracker: 
-  toggleHabit : (dateString, isChecked) => ipcRenderer.invoke('toggle-habit', dateString, isChecked),
-  getHabits: () => ipcRenderer.invoke('get-habits')
+  toggleHabit : (habitId, dateString, isChecked) => ipcRenderer.invoke('toggle-habit', habitId, dateString, isChecked),
+  getHabits: () => ipcRenderer.invoke('get-habits'),
+  saveTitle: (habitId, newTitle) => ipcRenderer.invoke('save-title', habitId, newTitle)
 }); 
