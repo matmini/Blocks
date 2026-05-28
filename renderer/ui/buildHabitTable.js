@@ -1,7 +1,7 @@
 /**
  * Dynamically builds the habit tracking grid 
  * 
- * @param {Object} savedHabits - the object fetched from electron-store 
+ * @param list savedHabits - the object fetched from electron-store 
  *    (e.g., {'2026-05-29': true})
  * 
  * Takes a blank table object, populates it with dates and month headers
@@ -86,7 +86,13 @@ export function buildHabitTable(savedHabits){
     td.dataset.date = dateStr;
     td.setAttribute("data-tooltip", dateStr)
 
-    if (savedHabits && savedHabits[dateStr] === true){
+    /**
+     * this needs update in the future for when we allow tracking of
+     * multiple habits, but for this version, let's assume there's 
+     * just one habit we're tracking so we use index 0 
+     */
+
+    if (savedHabits && savedHabits[0].history[dateStr] === true){
       td.classList.add('filled');
     }
     rows[dayName].appendChild(td);

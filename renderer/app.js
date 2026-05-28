@@ -9,7 +9,7 @@ import { buildHabitTable } from './ui/buildHabitTable.js';
 const table = document.querySelector("#habit-body")
 
 window.addEventListener('DOMContentLoaded', async() => { 
-  let savedHabits = {};
+  let savedHabits = [];
   // Call Handler 2 (Get the habits) 
   console.log('🔄 Attempting to fetch habits from main process...');
   try{
@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', async() => {
     buildHabitTable(savedHabits); 
   } catch (error){
     console.error('❌ Failed to fetch habits from main process:', error);
-    buildHabitTable({}); // fallback to blank calendar if things break
+    buildHabitTable(savedHabits); // fallback to blank calendar if things break
   }
 });
 //-------------------------------------------------------------------
@@ -81,7 +81,7 @@ table.addEventListener("click", async (e)=>{
   try {
     // Call the bridge function safely 
     // the code pauses here until the main process saves to electron-store
-    await window.api.toggleHabit(dateString, isChecked);
+    await window.api.toggleHabit("fake id", dateString, isChecked);
 
     console.log(`Saved: ${dateString} is now ${isChecked}`);
   } catch {

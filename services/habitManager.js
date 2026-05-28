@@ -29,19 +29,28 @@ function initHabitManager() {
     const tracks = store.get('habitTracks', []);
 
     // Find the specific habit object by its ID 
-    const targetHabit = tracks.find(h => h.id === habitId); 
+    let targetHabit = tracks.find(h => h.id === habitId); 
 
-    if (targetHabit) {
-      if (!targetHabit.history) targetHabit.history = {};
-
-      if (isChecked) {
-        targetHabit.history[dateString] = true; 
-      } else {
-        delete targetHabit.history[dateString];
-      }
-
-      store.set('habitTracks', tracks);
+    if (!targetHabit) {
+      targetHabit = {
+        id: habitId, 
+        title: "Default Habit Title",
+        history: {}
+      };
+      tracks.push(targetHabit);
     }
+
+    // safely modify the history object now that we guaranteee targetHabit exists
+    if (!targetHabit.history) targetHabit.history = {}; 
+
+    if (isChecked) {
+      targetHabit.history[dateString] = true; 
+    } else {
+      delete targetHabit.history[dateString];
+    }
+
+    store.set('habitTracks', tracks);
+    
     return tracks;
 
   });
@@ -76,7 +85,7 @@ function initHabitManager() {
       store.set('habitTracks', tracks);
     }
     return tracks; 
-  })
+  });
 }
 
 module.exports = { initHabitManager };
