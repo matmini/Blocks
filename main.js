@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 // import your custom habit manager module 
-const { initHabitManager } = require('./services/habitManager')
+const { initHabitManager } = require('./services/habitManager');
 
 
 function createWindow(){
@@ -33,6 +33,7 @@ ipcMain.handle('ping', async(event) => {
   console.log("Received a ping from the frontend!"); 
   return "Pong!!! The communication line works perfectly.";
 });
+
 
 // App is ready
 app.whenReady().then(() => {

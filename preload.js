@@ -5,5 +5,5 @@ contextBridge.exposeInMainWorld('api', {
 
   // Add these two lines for your habit tracker: 
   toggleHabit : (dateString, isChecked) => ipcRenderer.invoke('toggle-habit', dateString, isChecked),
-  getHabits: ipcRenderer.invoke('get-habits')
+  getHabits: () => ipcRenderer.invoke('get-habits')
 }); 

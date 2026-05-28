@@ -9,6 +9,17 @@ import { buildHabitTable } from './ui/buildHabitTable.js';
 const table = document.querySelector("#habit-body")
 
 window.addEventListener('DOMContentLoaded', async() => {
+  // Call Handler 2 (Get the habits) 
+  console.log('🔄 Attempting to fetch habits from main process...');
+  try{
+    const savedHabits = await window.api.getHabits();
+    console.log('✅ Connection Successful! Here is your saved data:');
+    console.dir(savedHabits); // console.dir prints objects cleanly
+  } catch (error){
+    console.error('❌ Failed to fetch habits from main process:', error)
+  }
+  
+
   const blankTable = document.querySelector("#habit-body");
 
   // Pass the blank table, catch the fully loaded table 
@@ -16,7 +27,20 @@ window.addEventListener('DOMContentLoaded', async() => {
 
   console.log("Table successfully build with row: ", populatedTable);
 
-})
+  // Sync the data file 
+  //await initializeHabitData();
+});
+//-------------------------------------------------------------------
+/*
+
+async function initializeHabitData() {
+  try {
+    const savedHabits = await window.api.getHabits(); 
+
+    document.querySelectorAll("")
+  }
+}
+*/
 //-------------------------------------------------------------------
 const testBtn = document.getElementById('test-btn'); 
 const testStatus = document.getElementById('test-status'); 
