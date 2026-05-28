@@ -21,30 +21,62 @@ function initHabitManager() {
   
   // Handler 1: Toggle/Save a habit day 
   // Electron catches the request because the channel name matches perfectly
-  ipcMain.handle('toggle-habit', async(event, dateString, isChecked) => {
+  ipcMain.handle('toggle-habit', async(event, habitId, dateString, isChecked) => {
     
     // Open and read what is currently in you config.json file 
     // Returns empty object {} if first time 
-    const habits = store.get('habits', {}); 
+    // const habits = store.get('habits', {}); 
+    const tracks = store.get('habitTracks', []);
 
-    // Update the Javascript object with the new date status 
-    if (isChecked) {
-      habits[dateString] = true;
-    } else {
-      delete habits[dateString];
+    // Find the specific habit object by its ID 
+    const targetHabit = tracks.find(h => h.id === habitId); 
+
+    if (targetHabit) {
+      if (!targetHabit.history) targetHabit.history = {};
+
+      if (isChecked) {
+        targetHabit.history[dateString] = true; 
+      } else {
+        delete targetHabit.history[dateString];
+      }
+
+      store.set('habitTracks', tracks);
     }
+    return tracks;
 
-    // Safely write the updated object back down to the hard drive file 
-    store.set('habits', habits);
-
-    // Send the data back across the bridge as a confirmed return value 
-    return habits;
   });
 
+  
   // Handler 2: Fetch data when frontend loads 
+  /*
   ipcMain.handle('get-habits', async () => {
     return store.get('habits', {});
   });
+  */ 
+  // Update handler 2 (updated structure) 
+  ipcMain.handle('get-habits', async () => {
+    // returns a default starting habit if thestore is completely empty 
+    return store.get('habitTracks', [
+      {
+        id: "default-habit", 
+        title: "Habit 1", 
+        history: {}
+      }
+    ]);
+  });
+
+
+  // Handler 3: Updates the title of a specific habit card 
+  ipcMain.handle('save-title', async(event, habitId, newTitle) => {
+    const tracks = store.get('habitTracks', []); 
+    const targetHabit = tracks.find(h => h.id === habitId); 
+
+    if (targetHabits) {
+      targetHabit.title = newTitle; 
+      store.set('habitTracks', tracks);
+    }
+    return tracks; 
+  })
 }
 
 module.exports = { initHabitManager };
