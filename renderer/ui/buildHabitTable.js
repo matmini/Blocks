@@ -1,4 +1,9 @@
 /**
+ * Dynamically builds the habit tracking grid 
+ * 
+ * @param {Object} savedHabits - the object fetched from electron-store 
+ *    (e.g., {'2026-05-29': true})
+ * 
  * Takes a blank table object, populates it with dates and month headers
  * and returns the populated table. 
  */
@@ -6,7 +11,9 @@ const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul"]; 
 const weeks = 52/2;
 
-export function buildHabitTable(table){
+export function buildHabitTable(savedHabits){
+  const table = document.querySelector("#habit-body");
+
   // Clear anything inside just in case 
   table.innerHTML = ''; 
 
@@ -78,6 +85,10 @@ export function buildHabitTable(table){
       }`
     td.dataset.date = dateStr;
     td.setAttribute("data-tooltip", dateStr)
+
+    if (savedHabits && savedHabits[dateStr] === true){
+      td.classList.add('filled');
+    }
     rows[dayName].appendChild(td);
 
     /**

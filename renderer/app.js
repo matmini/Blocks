@@ -8,27 +8,19 @@ import { buildHabitTable } from './ui/buildHabitTable.js';
 
 const table = document.querySelector("#habit-body")
 
-window.addEventListener('DOMContentLoaded', async() => {
+window.addEventListener('DOMContentLoaded', async() => { 
+  let savedHabits = {};
   // Call Handler 2 (Get the habits) 
   console.log('🔄 Attempting to fetch habits from main process...');
   try{
-    const savedHabits = await window.api.getHabits();
+    savedHabits = await window.api.getHabits();
     console.log('✅ Connection Successful! Here is your saved data:');
     console.dir(savedHabits); // console.dir prints objects cleanly
+    buildHabitTable(savedHabits); 
   } catch (error){
-    console.error('❌ Failed to fetch habits from main process:', error)
+    console.error('❌ Failed to fetch habits from main process:', error);
+    buildHabitTable({}); // fallback to blank calendar if things break
   }
-  
-
-  const blankTable = document.querySelector("#habit-body");
-
-  // Pass the blank table, catch the fully loaded table 
-  const populatedTable = buildHabitTable(blankTable); 
-
-  console.log("Table successfully build with row: ", populatedTable);
-
-  // Sync the data file 
-  //await initializeHabitData();
 });
 //-------------------------------------------------------------------
 /*
