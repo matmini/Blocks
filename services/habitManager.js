@@ -1,6 +1,7 @@
 // habitManager.js 
 /**
  * HABIT MANAGER (Main Process Backend)
+ * This is connected to the frontend through preload.js
  * Handles reading and wrriting habit tracking data o the user's hard drive. 
  * It uses 'electron-store' to save data in a JSON file that persists even
  * when the app closes.
