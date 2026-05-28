@@ -1,4 +1,15 @@
 // habitManager.js 
+/**
+ * HABIT MANAGER (Main Process Backend)
+ * Handles reading and wrriting habit tracking data o the user's hard drive. 
+ * It uses 'electron-store' to save data in a JSON file that persists even
+ * when the app closes.
+ * 
+ * How it works: 
+ * 1. ('get-habits'): Sends saved habit dates to the frontend when the app boots up
+ * 2. ('toggle-habit'): Listens for clicks from the frontend to save or delete completed dates
+ * 
+ */
 const { ipcMain } = require('electron'); 
 
 const Store = require('electron-store').default; 
