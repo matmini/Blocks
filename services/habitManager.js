@@ -34,7 +34,7 @@ function initHabitManager() {
     if (!targetHabit) {
       targetHabit = {
         id: habitId, 
-        title: "Default Habit Title",
+        title: "Habit 1",
         history: {}
       };
       tracks.push(targetHabit);
