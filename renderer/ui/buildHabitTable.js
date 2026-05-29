@@ -12,6 +12,12 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul"];
 const weeks = 52/2;
 
 export function buildHabitTable(savedHabits){
+  // temporary fix for showing the habit title 
+  const titleTxt = document.getElementById("habit-name-txt"); 
+  titleTxt.textContent = savedHabits[0].title;
+
+
+
   const table = document.querySelector("#habit-body");
 
   // Clear anything inside just in case 

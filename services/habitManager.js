@@ -80,7 +80,7 @@ function initHabitManager() {
     const tracks = store.get('habitTracks', []); 
     const targetHabit = tracks.find(h => h.id === habitId); 
 
-    if (targetHabits) {
+    if (targetHabit) {
       targetHabit.title = newTitle; 
       store.set('habitTracks', tracks);
     }
