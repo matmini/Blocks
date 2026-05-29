@@ -8,8 +8,8 @@
  * and returns the populated table. 
  */
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul"]; 
-const weeks = 52/2;
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
+const weeks = 52;
 
 export function buildHabitTable(savedHabits){
   // temporary fix for showing the habit title 
@@ -60,7 +60,7 @@ export function buildHabitTable(savedHabits){
    * we get 6-months worth of days 
    * starting from the startDate
    */
-  for (let i = 0; i < 365/2; i++) {
+  for (let i = 0; i < 365; i++) {
     const date = new Date(
       startDate.getFullYear(),
       startDate.getMonth(),
