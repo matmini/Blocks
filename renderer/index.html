@@ -10,6 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+  <div class="controls">
+    <button id="add-habit-btn">+ Add New Habit</button>
+  </div>
+
+  <div id="habits-wrapper"></div>
   <h1 id="habit-name-txt" contenteditable="true">Habit 1</h1>
   <div class="graph-container">
     <table class="contribution-table">
@@ -19,6 +24,19 @@
       </tbody>
     </table>
   </div>
+
+  <template id="habit-template">
+    <div class="habit-card">
+      <h1 class="habit-name-txt" contenteditable="true">New Habit (Click to edit)</h1>
+      <div class="graph-container">
+        <table class="contribution-table">
+          <thead></thead>
+          <tbody class="habit-body"></tbody>
+        </table>
+      </div>
+      <button class="delete-habit-btn">Delete Habit</button>
+    </div>
+  </template>
   <div>
     <h3>Electron IPC Communication Test</h3>
     <button id="test-btn">Ping Backend</button>
