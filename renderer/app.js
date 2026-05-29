@@ -57,6 +57,11 @@ if (testBtn && testStatus) {
 
 const habitTxt = document.getElementById("habit-name-txt");
 // function to save the title 
+/**
+ * we put the logic of saving title here so no matter how the user saves,
+ * either by clicking away or by entering, the function is called as soon as 
+ * the habitTxt blurs
+ */
 async function handleSaveTitle() {
  // grab the updated text and trim 
   const updatedTitle = habitTxt.textContent.trim(); 
@@ -64,6 +69,7 @@ async function handleSaveTitle() {
   // send it to the backend along with the card's specific id 
   console.log(`Saving new title...`); 
 
+  // temporary
   try{
     await window.api.saveTitle("fake id", updatedTitle);
     console.log(`Title saved successfully: ${updatedTitle}`);
@@ -80,7 +86,6 @@ habitTxt.addEventListener("keydown", async (e)=>{
     habitTxt.blur();
   }
 });
-
 habitTxt.addEventListener("blur", handleSaveTitle);
 
 //-----------------------------------------
