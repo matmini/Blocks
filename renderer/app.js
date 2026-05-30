@@ -44,26 +44,3 @@ addHabitBtn.addEventListener('click', async ()=> {
   }
 
 })
-
-//-------------------------------------------------------------------
-
-//-------------------------------------------------------------------
-const testBtn = document.getElementById('test-btn'); 
-const testStatus = document.getElementById('test-status'); 
-
-if (testBtn && testStatus) {
-  testBtn.addEventListener('click', async () => {
-    testStatus.textContent = "Sending ping..."; 
-
-    try {
-      // call the function across the bridge 
-      const response = await window.api.pingBackend(); 
-
-      // Display the response from main.js in the UI
-      testStatus.textContent = response;
-    } catch (error) {
-      testStatus.textContent = `Error: ${error.message}`; 
-      console.error(error);
-    }
-  });
-}
