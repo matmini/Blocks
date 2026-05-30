@@ -134,7 +134,6 @@ function generateTable(table, habitHistory){
      * Check if the date is marked true 
      * and add the class 'filled' if true
      */
-    console.log(`habitHistory.length: ${habitHistory.length}`)
     if (habitHistory && habitHistory[dateStr] === true){
       td.classList.add('filled');
     }
@@ -157,8 +156,8 @@ function generateTable(table, habitHistory){
      * Dynamically track and colspan month labels 
      * Every time Sunday hits , it means a new column (week) has started 
      */
-    /*
-    if (date.getDay() === 0 || i === 0){
+    
+    if (date.getDay() === 0 || i === 0){ //if it is a sunday
       const dateMonth = date.getMonth(); 
 
       // if we entered a new month, create a new header 
@@ -178,8 +177,8 @@ function generateTable(table, habitHistory){
     }
   }
 
-*/
-}}
+
+}
 async function  saveNewTitle (id, newTitle){
   console.log("Saving new title...");
   try{
