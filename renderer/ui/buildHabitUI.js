@@ -29,7 +29,8 @@ export function buildHabitUI(habit){
   if (habit) { // previously saved habit
     nameHeading.textContent = habit.title; 
     console.log(`habit.title: ${habit.title}`)
-    generateTable(tableBody, habit.history);
+    generateTable(tableBody, habit);
+    addListener(tableBody, habit);
   } else { // default habit
     nameHeading.textContent = 'New Habit';
     generateTable(tableBody, null)
@@ -57,7 +58,34 @@ export function buildHabitUI(habit){
   habitsWrapper.appendChild(templateClone);
 }
 
-function generateTable(table, habitHistory){
+function addListener(table, habit){
+  // a cell in table is clicked 
+  table.addEventListener("click", async (e)=>{
+    const cell = e.target; 
+    
+    // Ignore day labels and other elements 
+    if (!cell.matches("td[data-date]")) return; 
+
+    const dateString = cell.dataset.date; 
+
+    // toggle filled and isChecked depends on it 
+    const isChecked = cell.classList.toggle("filled");  
+
+    try {
+      // Call the bridge function safely 
+      // the code pauses here until the main process saves to electron-store
+      await window.api.toggleHabit(habit.id, dateString, isChecked);
+
+      console.log(`Saved: ${dateString} is now ${isChecked}`);
+    } catch {
+      console.error("Failed to save habit to storage: ", error);
+    }
+    //console.log("Clicked: ", cell.dataset.date);
+  });
+}
+
+function generateTable(table, habit){
+  const habitHistory = habit.history;
   const headerRow = document.createElement("tr"); 
   // Empty corner cell so the months align with the columns, cnot the day labels 
   const emptyCorner = document.createElement("th"); 
@@ -188,6 +216,7 @@ async function  saveNewTitle (id, newTitle){
     console.log(`error: ${error.message}`)
   }
 }
+
 
 
 

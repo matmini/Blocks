@@ -3,11 +3,8 @@ import { buildHabitUI } from './ui/buildHabitUI.js';
 
 //-------------------------------------------------------------------
 /**
- * Build table
+ * Build habit cards
  */
-
-const table = document.querySelector("#habit-body")
-
 window.addEventListener('DOMContentLoaded', async() => { 
   let savedHabits = [];
   // Call Handler 2 (Get the habits) 
@@ -61,36 +58,6 @@ if (testBtn && testStatus) {
   });
 }
 
-
-
-
-//-----------------------------------------
-
-// a cell in table is clicked 
-table.addEventListener("click", async (e)=>{
-  const cell = e.target; 
-  
-  // Ignore day labels and other elements 
-  if (!cell.matches("td[data-date]")) return; 
-
-  const dateString = cell.dataset.date; 
-
-  // toggle filled and isChecked depends on it 
-  const isChecked = cell.classList.toggle("filled");  
-
-  try {
-    // Call the bridge function safely 
-    // the code pauses here until the main process saves to electron-store
-    await window.api.toggleHabit("fake id", dateString, isChecked);
-
-    console.log(`Saved: ${dateString} is now ${isChecked}`);
-  } catch {
-    console.error("Failed to save habit to storage: ", error);
-  }
-
-  //console.log("Clicked: ", cell.dataset.date);
-});
-//--------------------------------------------
 
 //-------------------------------------------------------------
 
