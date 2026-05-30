@@ -2,7 +2,7 @@
 
 A minimalist desktop habit tracker built with **Electron**. Track your daily routines through an interactive calendar grid that persists your data locally.
 
-![App Screenshot](./assets/electron_ss.png)
+![App Screenshot](./assets/electron.png)
 
 ## ✨ Features
 
