@@ -31,14 +31,14 @@ body {
   padding: 15px;
 }
 
-.contribution-table {
+.habit-body {
   border-collapse: separate; /* Required for border-spacing to work */
   border-spacing: 3px;       /* The gap between the boxes */
   width: max-content;        /* Shrinks tha table wrapper to fit only the cells */
 }
 
 /* Base style for every contribution box */
-.contribution-table td:not(.day-label) {
+.habit-body td:not(.day-label) {
   width: 13px;
   height: 13px;  
   min-width: 13px;
@@ -64,12 +64,12 @@ body {
 }
 
 /* Hide alternating day labels for a cleaner look, just like GitHub */
-.contribution-table tr:nth-child(odd) .day-label {
+.habit-body tr:nth-child(odd) .day-label {
   visibility: hidden;
 }
 
 /* Color levels based on contribution intensity */
-.contribution-table td.filled::after {
+.habit-body td.filled::after {
   content: "";
   position: absolute;
   inset: 0;

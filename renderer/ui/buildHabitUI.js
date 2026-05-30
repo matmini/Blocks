@@ -101,19 +101,17 @@ function generateTable(table, habitHistory){
   startDate.setDate(firstOfJan.getDate() + daysUntilSunday); 
   console.log(`firstOfJan.getDate(): ${firstOfJan.getDate()}`);
   console.log(`startDate: ${startDate}`);
-  /*
-  const startDate = new Date("2026-01-04"); 
 
   let currentMonth = -1;
   let monthCell = null; 
   let columnCount = 0;
-  */
+  
   /**
    * Generate the grid 
-   * we get 6-months worth of days 
+   * we get 365 days 
    * starting from the startDate
    */
-  /*
+  
   for (let i = 0; i < 365; i++) {
     const date = new Date(
       startDate.getFullYear(),
@@ -121,22 +119,6 @@ function generateTable(table, habitHistory){
       startDate.getDate() + i
     );
 
-  /**
-   * we get the dayName of the date 
-   * because we will use this as index to row
-   * so that we add the td to the correct row
-   */
-  /*
-    const dayName = days[date.getDay()];
-    /**
-     * when we date.getDay(), it returns an int
-     * 0 for Sunday
-     * 1 for Monday
-     * and so on 
-     * so to get the words, we use that index to our 
-     * days array where days[0]='Sun'
-     */
-/*
     const td = document.createElement("td");
     // adds date dataset to the td in format: 
     // 2026-01-01
@@ -149,14 +131,26 @@ function generateTable(table, habitHistory){
     td.setAttribute("data-tooltip", dateStr)
 
     /**
-     * this needs update in the future for when we allow tracking of
-     * multiple habits, but for this version, let's assume there's 
-     * just one habit we're tracking so we use index 0 
+     * Check if the date is marked true 
+     * and add the class 'filled' if true
      */
-/*
-    if (savedHabits && savedHabits[0].history[dateStr] === true){
+    console.log(`habitHistory.length: ${habitHistory.length}`)
+    if (habitHistory && habitHistory[dateStr] === true){
       td.classList.add('filled');
     }
+
+    /**
+     * we get the dayName of the date 
+     * because we will use this as index to row list
+     * so that we add the td to the correct row
+     * when we date.getDay(), it returns an int
+     * 0 for Sunday
+     * 1 for Monday
+     * and so on 
+     * so to get the words, we use that index to our 
+     * days array where days[0]='Sun'
+     */
+    const dayName = days[date.getDay()];
     rows[dayName].appendChild(td);
 
     /**
@@ -185,7 +179,7 @@ function generateTable(table, habitHistory){
   }
 
 */
-}
+}}
 async function  saveNewTitle (id, newTitle){
   console.log("Saving new title...");
   try{
