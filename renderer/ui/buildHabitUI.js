@@ -7,6 +7,9 @@
  * Takes a blank table object, populates it with dates and month headers
  * and returns the populated table. 
  */
+
+import { initializeTooltip } from '../components/tooltip.js';
+
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
 const weeks = 52;
@@ -24,6 +27,8 @@ export function buildHabitUI(habit){
   const nameHeading = templateClone.querySelector('.habit-name-txt');
   const tableBody = templateClone.querySelector('.habit-body'); 
   const deleteBtn = templateClone.querySelector('.delete-habit-btn'); 
+  
+  const tooltip = document.getElementById('global-tooltip'); 
 
   // Populate data if it exists, otherwise use defaults 
   if (habit) { // previously saved habit
@@ -31,6 +36,7 @@ export function buildHabitUI(habit){
     console.log(`habit.title: ${habit.title}`)
     generateTable(tableBody, habit);
     addListener(tableBody, habit);
+    initializeTooltip(tableBody, tooltip);
   } else { // default habit
     nameHeading.textContent = 'New Habit';
     generateTable(tableBody, null)

@@ -57,10 +57,3 @@ if (testBtn && testStatus) {
     }
   });
 }
-
-
-//-------------------------------------------------------------
-
-const tooltip = document.getElementById('global-tooltip');
-// tooltip logic
-initializeTooltip(table, tooltip);
