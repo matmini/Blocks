@@ -31,14 +31,14 @@ body {
   padding: 15px;
 }
 
-.habit-body {
+.contribution-table {
   border-collapse: separate; /* Required for border-spacing to work */
-  border-spacing: 3px;       /* The gap between the boxes */
+  border-spacing: 5px;       /* The gap between the boxes */
   width: max-content;        /* Shrinks tha table wrapper to fit only the cells */
 }
 
 /* Base style for every contribution box */
-.habit-body td:not(.day-label) {
+.contribution-table td:not(.day-label) {
   width: 13px;
   height: 13px;  
   min-width: 13px;
@@ -46,11 +46,10 @@ body {
   max-width: 13px;
   max-height: 13px;
 
-  border-radius: 2px;       /* Slightly rounded corners */  
+  border-radius: 3px;       /* Slightly rounded corners */  
   position: relative;
   overflow: hidden;
   background-color: var(--bg-level-0);
-
 
 }
 

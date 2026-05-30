@@ -27,13 +27,12 @@ export function buildHabitUI(habit){
   const nameHeading = templateClone.querySelector('.habit-name-txt');
   const tableBody = templateClone.querySelector('.habit-body'); 
   const deleteBtn = templateClone.querySelector('.delete-habit-btn'); 
-  
+
   const tooltip = document.getElementById('global-tooltip'); 
 
   // Populate data if it exists, otherwise use defaults 
   if (habit) { // previously saved habit
     nameHeading.textContent = habit.title; 
-    console.log(`habit.title: ${habit.title}`)
     generateTable(tableBody, habit);
     addListener(tableBody, habit);
     initializeTooltip(tableBody, tooltip);
@@ -120,7 +119,6 @@ function generateTable(table, habit){
 
   // Dynamically set the starting date to the first sunday of the current year 
   const currentYear = new Date().getFullYear(); 
-  console.log(`current year: ${currentYear}`);
 
   // Start at January 1st of the current year 
   const firstOfJan = new Date(`${currentYear}-01-01`); 
@@ -128,13 +126,10 @@ function generateTable(table, habit){
   // getDay() return 0 for Sunday, 1 for Monday, etc. 
   // calculate how many days we need to add to get to the first Sunday 
   const daysUntilSunday = (7 - firstOfJan.getDay()) % 7; 
-  console.log(`daysUntilSunday: ${daysUntilSunday}`);
 
   // Create the final start date by adding the offset 
   const startDate = new Date(firstOfJan);
   startDate.setDate(firstOfJan.getDate() + daysUntilSunday); 
-  console.log(`firstOfJan.getDate(): ${firstOfJan.getDate()}`);
-  console.log(`startDate: ${startDate}`);
 
   let currentMonth = -1;
   let monthCell = null; 

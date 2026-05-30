@@ -67,8 +67,8 @@ function initHabitManager() {
     // returns a default starting habit if thestore is completely empty 
     return store.get('habitTracks', [
       {
-        id: "default-habit", 
-        title: "Habit 1", 
+        id: `habit-${Date.now()}`, 
+        title: "New Habit", 
         history: {}
       }
     ]);
@@ -86,6 +86,14 @@ function initHabitManager() {
     }
     return tracks; 
   });
+
+  // Handler 4: Add a new habit 
+  ipcMain.handle('create-new-habit', (event, habit) => {
+    const habits = store.get('habitTracks');
+    habits.push(habit); 
+    store.set('habitTracks', habits); 
+    return habits;
+  })
 }
 
 module.exports = { initHabitManager };
