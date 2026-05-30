@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', async() => {
     }
   } catch (error){
     console.error('❌ Failed to fetch habits from main process:', error);
-    //buildHabitUI({}); // pass in empty object if there are no previous habits
   }
 });
 //-------------------------------------------------------------------
