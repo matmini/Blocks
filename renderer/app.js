@@ -1,5 +1,5 @@
 import { initializeTooltip } from './components/tooltip.js';
-import { buildHabitTable } from './ui/buildHabitTable.js';
+import { buildHabitUI } from './ui/buildHabitUI.js';
 
 //-------------------------------------------------------------------
 /**
@@ -15,11 +15,18 @@ window.addEventListener('DOMContentLoaded', async() => {
   try{
     savedHabits = await window.api.getHabits();
     console.log('✅ Connection Successful! Here is your saved data:');
-    console.dir(savedHabits); // console.dir prints objects cleanly
-    buildHabitTable(savedHabits); 
+    //console.dir(savedHabits); // console.dir prints objects cleanly
+    //buildHabitTable(savedHabits); 
+    if (savedHabits && savedHabits.length > 0){
+      savedHabits.forEach(habit => {
+        buildHabitUI(habit);
+        console.log(habit);
+      });
+    }
+
   } catch (error){
     console.error('❌ Failed to fetch habits from main process:', error);
-    buildHabitTable(savedHabits); // fallback to blank calendar if things break
+    //buildHabitUI({}); // pass in empty object if there are no previous habits
   }
 });
 //-------------------------------------------------------------------
@@ -55,38 +62,7 @@ if (testBtn && testStatus) {
 }
 
 
-const habitTxt = document.getElementById("habit-name-txt");
-// function to save the title 
-/**
- * we put the logic of saving title here so no matter how the user saves,
- * either by clicking away or by entering, the function is called as soon as 
- * the habitTxt blurs
- */
-async function handleSaveTitle() {
- // grab the updated text and trim 
-  const updatedTitle = habitTxt.textContent.trim(); 
 
-  // send it to the backend along with the card's specific id 
-  console.log(`Saving new title...`); 
-
-  // temporary
-  try{
-    await window.api.saveTitle("fake id", updatedTitle);
-    console.log(`Title saved successfully: ${updatedTitle}`);
-  } catch (error) {
-    console.log(`error: ${error.message}`)
-  }
-}
-habitTxt.addEventListener("keydown", async (e)=>{
-  // Check if the pressed key is Enter 
-  if (e.key === "Enter") {
-    e.preventDefault(); // Prevent the default action (creating a new line)
-    
-    // removes focus from text field
-    habitTxt.blur();
-  }
-});
-habitTxt.addEventListener("blur", handleSaveTitle);
 
 //-----------------------------------------
 
