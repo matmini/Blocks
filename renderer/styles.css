@@ -126,3 +126,92 @@ h1[contenteditable="true"]:focus{
   z-index: 99999;
 
 }
+.delete-habit-btn {
+  /* Layout & Sizing */
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  font-size: 12px; /* Small, unassuming text */
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+
+  /* Muted Default State (Blends in) */
+  color: #7b8188; /* Muted gray text—looks like a normal label */
+  
+  /* Smooth transition */
+  transition: color 0.12s ease, background-color 0.12s ease;
+}
+
+/* Hover State - Only reveals danger when intentionally targeted */
+.delete-habit-btn:hover {
+  color: #cf222e; /* GitHub Light Mode Danger Red */
+  background-color: #ffebe9; /* Extremely soft red tint */
+}
+
+/* Active / Pressed State */
+.delete-habit-btn:active {
+  background-color: #fcccce;
+}
+
+.title-delete {
+  display: flex;
+  justify-content: space-between; /* Pushes name to left, button to right */
+  align-items: center;           /* Vertically centers both elements perfectly */
+  width: 100%;                   /* Spans the full width of the habit card */
+  gap: 16px;                     /* Prevents them from colliding on small screens */
+  margin-bottom: 12px;           /* Adds clean spacing between this row and the calendar table */
+}
+
+/* Optional adjustment to ensure the heading behaves nicely */
+.habit-name-txt {
+  margin: 0;                     /* Strips default browser h1 margins */
+  flex-grow: 1;                  /* Allows the text box to fill the available space for easier clicking/editing */
+}
+
+.habit-card {
+  padding: 15px;
+}
+
+#add-habit-btn {
+  /* Layout & Spacing */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 600; /* Semi-bold for clear hierarchy */
+  line-height: 20px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 6px;
+
+  /* GitHub Light Mode Primary Button Colors */
+  color: #ffffff;
+  background-color: #1f883d; /* GitHub Success Green */
+  border: 1px solid rgba(27, 31, 36, 0.15);
+  box-shadow: 0 1px 0 rgba(27, 31, 36, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  
+  /* Smooth color transition on interaction */
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+/* Hover State - Gets slightly deeper green */
+#add-habit-btn:hover {
+  background-color: #1a7f37;
+}
+
+/* Active / Pressed State */
+#add-habit-btn:active {
+  background-color: #187733;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Focus Outline for Keyboard Navigation */
+#add-habit-btn:focus-visible {
+  outline: 2px solid #0969da; /* GitHub Accent Blue */
+  outline-offset: 2px;
+}

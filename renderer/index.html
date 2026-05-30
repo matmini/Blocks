@@ -18,14 +18,16 @@
 
   <template id="habit-template">
     <div class="habit-card">
-      <h1 class="habit-name-txt" contenteditable="true">New Habit (Click to edit)</h1>
+      <div class="title-delete">
+        <h1 class="habit-name-txt" contenteditable="true">New Habit (Click to edit)</h1>
+        <button class="delete-habit-btn">Delete Habit</button>
+      </div>
       <div class="graph-container">
         <table class="contribution-table">
           <thead></thead>
           <tbody class="habit-body"></tbody>
         </table>
       </div>
-      <button class="delete-habit-btn">Delete Habit</button>
     </div>
   </template>
   <div id="global-tooltip" class="github-tooltip">hi</div>
