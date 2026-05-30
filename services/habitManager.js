@@ -57,12 +57,6 @@ function initHabitManager() {
 
   
   // Handler 2: Fetch data when frontend loads 
-  /*
-  ipcMain.handle('get-habits', async () => {
-    return store.get('habits', {});
-  });
-  */ 
-  // Update handler 2 (updated structure) 
   ipcMain.handle('get-habits', async () => {
     // returns a default starting habit if thestore is completely empty 
     return store.get('habitTracks', [
@@ -93,7 +87,26 @@ function initHabitManager() {
     habits.push(habit); 
     store.set('habitTracks', habits); 
     return habits;
-  })
+  }); 
+
+  // Handler 5: Delete a habit 
+  ipcMain.handle('delete-habit', async (event, habitId) => {
+    try {
+      // get the current list of habits 
+      const habits = store.get('habitTracks'); 
+
+      // filter out the habit that matches the passed id 
+      const updatedHabits = habits.filter(habit => habit.id !== habitId); 
+
+      // save the clean list back to the store 
+      store.set('habitTracks', updatedHabits);
+      console.log(`Habit ${habitId} successfully deleted`);
+      return { success : true }
+    } catch(error) {
+      console.error('❌ Failed to delete habit from store:', error);
+      throw error;
+    }
+  });
 }
 
 module.exports = { initHabitManager };

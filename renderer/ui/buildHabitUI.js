@@ -42,7 +42,8 @@ export function buildHabitUI(habit){
   }
 
   // Attach Event Listener: Delete Button 
-  deleteBtn.addEventListener('click', () => {
+  deleteBtn.addEventListener('click', async () => {
+    await window.api.deleteHabit(habit.id);
     cardContainer.remove();
   }); 
 

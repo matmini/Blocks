@@ -17,7 +17,6 @@ window.addEventListener('DOMContentLoaded', async() => {
         buildHabitUI(habit);
       });
     }
-
   } catch (error){
     console.error('❌ Failed to fetch habits from main process:', error);
     //buildHabitUI({}); // pass in empty object if there are no previous habits
@@ -45,6 +44,8 @@ addHabitBtn.addEventListener('click', async ()=> {
   }
 
 })
+
+//-------------------------------------------------------------------
 
 //-------------------------------------------------------------------
 const testBtn = document.getElementById('test-btn'); 
